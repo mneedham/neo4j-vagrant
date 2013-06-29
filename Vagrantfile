@@ -1,22 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
-
-module Vagrant
-  module Config
-    module V2
-      class Root
-        def provision_as_role(role)
-          vm.provision :puppet do |puppet|
-            puppet.manifests_path = "puppet/manifests"
-            puppet.module_path = "puppet/modules"
-            puppet.manifest_file  = "base.pp"
-            puppet.facter = { "role" => role.to_s }
-          end 
-        end
-      end
-    end
-  end
-end
+require File.join(File.dirname(__FILE__), 'lib', 'root.rb')
 
 Vagrant.configure("2") do |config|  
   config.vm.box = "precise64"
