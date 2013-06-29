@@ -7,4 +7,10 @@ class haproxy {
 		group => 'root',
 	}
 
+	file { '/etc/default/haproxy':
+		require => Package['haproxy'],
+		source => 'puppet:///modules/haproxy/haproxy',
+		owner => 'root',
+		group => 'root',
+	}
 }

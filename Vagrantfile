@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
     neo.vm.network :private_network, ip: "192.168.33.103"
   end  
 
-  config.vm.define :lb do |lb|
+  config.vm.define :lb01 do |lb|
     lb.provision_as_role :lb
     lb.vm.hostname = "lb01"
     lb.vm.network :private_network, ip: "192.168.33.104"
