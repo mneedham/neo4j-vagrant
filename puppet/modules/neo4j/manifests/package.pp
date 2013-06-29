@@ -31,13 +31,20 @@ class neo4j::package {
     path    => "${neo_path}/data/log",
     mode    => '755',
     owner   => 'neo',
-    require => User['neo'],
+    require => File['neo_data'],
   }
+
+  file { 'neo_conf':
+    path    => "${neo_path}/conf",
+    mode    => '755',
+    owner   => 'neo',
+    require => User['neo'],
+  }  
 
   file { 'neo4j-server-properties':
     ensure => 'file',
     path   => "${neo_path}/conf/neo4j-server-properties",
     source => "puppet:///modules/neo4j/conf/neo4j-server.properties",   
-    require => Exec['download_neo_jar'],
+    require => File['neo_conf'],
   }  
 }
