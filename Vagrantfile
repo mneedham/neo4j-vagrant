@@ -7,19 +7,19 @@ Vagrant.configure("2") do |config|
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
  
   config.vm.define :neo01 do |neo| 
-    neo.provision_as_role :neo
+    neo.provision_as_neo :server_id => 1, :initial_hosts => ["192.168.33.101", "192.168.33.102", "192.168.33.103"], :ip => "192.168.33.101"
     neo.vm.hostname = "neo01"
     neo.vm.network :private_network, ip: "192.168.33.101"
   end
  
   config.vm.define :neo02 do |neo|    
-    neo.provision_as_role :neo  
+    neo.provision_as_neo :server_id => 2, :initial_hosts => ["192.168.33.101", "192.168.33.102", "192.168.33.103"], :ip => "192.168.33.102"
     neo.vm.hostname = "neo02"
     neo.vm.network :private_network, ip: "192.168.33.102"
   end
 
   config.vm.define :neo03 do |neo| 
-    neo.provision_as_role :neo
+    neo.provision_as_neo :server_id => 3, :initial_hosts => ["192.168.33.101", "192.168.33.102", "192.168.33.103"], :ip => "192.168.33.103"
     neo.vm.hostname = "neo03"
     neo.vm.network :private_network, ip: "192.168.33.103"
   end  
@@ -28,6 +28,5 @@ Vagrant.configure("2") do |config|
     lb.provision_as_role :lb
     lb.vm.hostname = "lb01"
     lb.vm.network :private_network, ip: "192.168.33.104"
-    lb.vm.network :forwarded_port, host: 4569, guest: 8080
   end
 end

@@ -13,4 +13,12 @@ class haproxy {
 		owner => 'root',
 		group => 'root',
 	}
+
+  	service { 'haproxy':
+    	ensure    => true,
+    	enable    => true,
+    	hasstatus => true,
+    	restart   => '/usr/sbin/service haproxy reload',
+    	require   => Package['haproxy'],
+  	}
 }

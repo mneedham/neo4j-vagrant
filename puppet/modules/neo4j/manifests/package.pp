@@ -43,8 +43,17 @@ class neo4j::package {
 
   file { 'neo4j-server-properties':
     ensure => 'file',
-    path   => "${neo_path}/conf/neo4j-server-properties",
-    source => "puppet:///modules/neo4j/conf/neo4j-server.properties",   
+    path   => "${neo_path}/conf/neo4j-server.properties",
+    content => template("neo4j/conf/neo4j-server.properties.erb"),
     require => File['neo_conf'],
+    notify => Service['neo4j'],
   }  
+
+  file { 'neo4j.properties': 
+    ensure => 'file',
+    path   => "${neo_path}/conf/neo4j.properties",
+    content => template("neo4j/conf/neo4j.properties.erb"),
+    require => File['neo_conf'],
+    notify => Service['neo4j'],
+  }
 }
