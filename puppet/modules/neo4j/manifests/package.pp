@@ -1,8 +1,8 @@
 class neo4j::package {
-  $neo_path = '/usr/local/neo4j-enterprise-1.9'
+  $neo_path = '/usr/local/neo4j-enterprise-2.2.0-M04'
 
   exec { 'download_neo_jar':
-    command => 'curl http://dist.neo4j.org/neo4j-enterprise-1.9-unix.tar.gz | tar xz',
+    command => 'curl http://dist.neo4j.org/neo4j-enterprise-2.2.0-M04-unix.tar.gz | tar xz',
     cwd     => '/usr/local',
     path    => '/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin',
     creates => "${neo_path}/bin/neo4j",
@@ -39,7 +39,7 @@ class neo4j::package {
     mode    => '755',
     owner   => 'neo',
     require => User['neo'],
-  }  
+  }
 
   file { 'neo4j-server-properties':
     ensure => 'file',
@@ -47,9 +47,9 @@ class neo4j::package {
     content => template("neo4j/conf/neo4j-server.properties.erb"),
     require => File['neo_conf'],
     notify => Service['neo4j'],
-  }  
+  }
 
-  file { 'neo4j.properties': 
+  file { 'neo4j.properties':
     ensure => 'file',
     path   => "${neo_path}/conf/neo4j.properties",
     content => template("neo4j/conf/neo4j.properties.erb"),
