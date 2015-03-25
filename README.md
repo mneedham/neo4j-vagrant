@@ -10,8 +10,8 @@ And you're good to go!
 
 The Neo4j browser for each of the machines will be available locally at:
 
-* http://localhost:7001
-* http://localhost:7002
-* http://localhost:7003
+* [http://localhost:7001](Machine 1)
+* [http://localhost:7002](Machine 2)
+* [http://localhost:7003](Machine 3)
 
 Any problems, let me know in the issues.
