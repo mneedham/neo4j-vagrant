@@ -1,8 +1,8 @@
 class neo4j::package {
-  $neo_path = '/usr/local/neo4j-enterprise-2.2.0-M04'
+  $neo_path = '/usr/local/neo4j-enterprise-2.2.0'
 
   exec { 'download_neo_jar':
-    command => 'curl http://dist.neo4j.org/neo4j-enterprise-2.2.0-M04-unix.tar.gz | tar xz',
+    command => 'curl http://dist.neo4j.org/neo4j-enterprise-2.2.0-unix.tar.gz | tar xz',
     cwd     => '/usr/local',
     path    => '/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin',
     creates => "${neo_path}/bin/neo4j",
